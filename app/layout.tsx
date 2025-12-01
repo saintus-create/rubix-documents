@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 import { Providers } from "@/providers"
 import { GoogleTagManager } from "@next/third-parties/google"
 
@@ -9,9 +9,70 @@ import { Navbar } from "@/components/navigation/navbar"
 
 import "@/styles/globals.css"
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+// SF Pro Display for headings and display text
+const sfProDisplay = localFont({
+  src: [
+    {
+      path: "../public/fonts/SF-Pro-Display-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Pro-Display-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Pro-Display-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Pro-Display-Semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Pro-Display-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sf-display",
+  display: "swap",
+})
+
+// SF Pro Compact for body text and UI elements
+const sfProCompact = localFont({
+  src: [
+    {
+      path: "../public/fonts/SF-Compact-Display-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Compact-Display-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Compact-Display-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Compact-Display-Semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SF-Compact-Display-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sf-compact",
+  display: "swap",
 })
 
 const baseUrl = Settings.metadataBase
@@ -56,7 +117,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {Settings.gtmconnected && <GoogleTagManager gtmId={Settings.gtm} />}
-      <body className={`${inter.variable} font-regular`}>
+      <body className={`${sfProDisplay.variable} ${sfProCompact.variable} font-compact antialiased`}>
         <Providers>
           <Navbar />
           <main className="h-auto px-5 sm:px-8">{children}</main>
